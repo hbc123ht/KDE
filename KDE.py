@@ -72,17 +72,10 @@ while (1 == 1):
 plt.figure()
 plt.imshow(result.reshape(28,28))
 plt.show()
+# in order to reduce the runtime, i already predicted the bandwidth with the code following:
 """
-tmp = -1
-re = 0
-for i in range(10):
-    tmpp = (KDE2.dis(mer(x_test[c], i)) / KDE1.dis(x_test[c]))
-    print(i,tmpp)
-    if (tmpp > tmp):
-        tmp = tmpp
-        re = i
-plt.text(0,0,"The number is %s" % re)
-plt.figure()
-plt.imshow(x_test[c].reshape(28,28))
-plt.show()
+params = {'bandwidth': np.logspace(-1, 2, 200)}
+grid = GridSearchCV(KernelDensity(), params)
+grid.fit(data)
+K = grid.best_estimator_.bandwidth
 """
